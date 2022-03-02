@@ -1,6 +1,8 @@
 #Shell Scripting Basics Exercises
 
-#Run `chmod u+x file_name` on the terminal to make the script files executable.
+#Run ```
+chmod u+x file_name
+``` on the terminal to make the script files executable.
 
 * 0-current_working_directory: Prints the absolute path name of the current working directory.
 
