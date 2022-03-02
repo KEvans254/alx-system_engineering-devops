@@ -1,0 +1,1 @@
+This covers *shell* basics.
