@@ -1,8 +1,24 @@
 #!/usr/bin/env bash
-# Script that configures HAproxy in a load balancer 
-apt-get -y install software-properties-common
-add-apt-repository -y ppa:vbernat/haproxy-2.0
-apt-get -y update
-apt-get -y install haproxy=2.0.\*
-echo -e "\nfrontend http\n\tbind *:80\n\tmode http\n\tdefault_backend web-backend\n\nbackend web-backend\n\tbalance roundrobin\n\tserver 11303-web-01 3.238.126.83:80 check\n\tserver 11303-web-02 18.232.125.225:80 check" >> /etc/haproxy/haproxy.cfg
-service haproxy restart
+# Script that configures and sets up HAProxy(Load Balancing) servers
+# using the RoundRobin algorithm
+sudo apt-get -y update
+sudo apt-get -y install haproxy
+
+host1=$(curl -sI 34.231.147.175 | grep X-Served-By | awk '{ print $2 }' | rev | cut -c 2- | rev)
+host2=$(curl -sI 3.236.254.207 | grep X-Served-By | awk '{ print $2 }' | rev | cut -c 2- | rev)
+
+sudo cat >> /etc/haproxy/haproxy.cfg << EOF
+frontend main
+	mode http
+	bind *:80
+	default_backend servers
+
+backend servers
+	balance roundrobin
+	server ${host1} 34.231.147.175:80 check
+	server ${host2} 3.236.254.207:80 check
+
+EOF
+
+echo "ENABLED=1" >> /etc/default/haproxy
+sudo service haproxy restart
