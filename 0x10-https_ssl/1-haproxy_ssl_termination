@@ -25,4 +25,4 @@ listen hbnb
     server 20711-web-02 3.236.254.207 check
 frontend http-in
         bind *:80
-        bind *:443 ssl crt /etc/letsencrypt/live/lb-01.evanstoja.tech/haproxy.pem
+        bind *:443 ssl crt /etc/ssl/private/www.evanstoja.tech.pem
