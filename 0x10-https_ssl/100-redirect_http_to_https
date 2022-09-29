@@ -21,11 +21,11 @@ listen hbnb
     balance roundrobin
     option httpclose
     option forwardfor
-    server 20205-web-01 44.192.38.3 check
-    server 20205-web-02 3.239.82.120 check
+    server 20711-web-01 34.231.147.175 check
+    server 20711-web-02 3.236.254.207 check
 frontend http-in
         bind *:80
-        bind *:443 ssl crt /etc/letsencrypt/live/lb-01.kipronoh.tech/haproxy.pem
+        bind *:443 ssl crt /etc/letsencrypt/live/lb-01.evanstoja.tech/haproxy.pem
 backend webservers
         balance roundrobin
         server 20711-web-01 34.231.147.175 check
