@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Gracefully reloads Gunicorn.
 
-sudo systemctl reload gunicorn.service gunicorn restart
+kill -HUP `ps -C gunicorn fch -o pid | head -n 1`
