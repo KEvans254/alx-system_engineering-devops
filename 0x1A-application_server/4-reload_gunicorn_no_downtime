@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # reload Gunicorn in a graceful way
-pidfile=$(ls /tmp/gunicorn*.pid | sort -n -t - -k 2 | tail -n 1)
-kill -HUP $(cat $pidfile)
+
+kill -HUP gunicorn
